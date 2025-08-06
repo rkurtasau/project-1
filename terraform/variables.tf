@@ -1,16 +1,16 @@
-variable "gcp_provider" {
+variable "google_provider" {
   default = "google"
   type = string
   description = "google provider for terraform resources"
 }
 
-variable "gcp_region" {
+variable "google_region" {
   default     = "us-central1"
   type        = string
   description = "Default GCP region"
 }
 
-variable "gcp_zone" {
+variable "google_zone" {
   default = "us-central1-c"
   type    = string
   description = "Default GCP zone"

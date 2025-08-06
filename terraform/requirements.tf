@@ -1,15 +1,15 @@
 terraform {
   required_version = "1.12.2"
   required_providers {
-    gcp = {
+    google = {
       source  = "hashicorp/google"
       version = "6.47.0"
     }
   }
 }
 
-provider "gcp" {
+provider "google" {
     project = "tribal-spanner-467709-v0"
-    region = var.gcp_region
-    zone = var.gcp_zone
+    region = var.google_region
+    zone = var.google_zone
 }
