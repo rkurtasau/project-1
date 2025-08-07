@@ -1,3 +1,5 @@
+# Main VPC settings
+
 resource "google_compute_network" "vpc_network" {
     name = "vpc-network"
     routing_mode = "GLOBAL"
@@ -6,6 +8,9 @@ resource "google_compute_network" "vpc_network" {
     description = "Main network for GCP resources"
 }
 
+
+# Public subnet settings
+
 resource "google_compute_subnetwork" "public_subnet" {
     name = "public-subnet"
     network = google_compute_network.vpc_network.id
@@ -13,6 +18,9 @@ resource "google_compute_subnetwork" "public_subnet" {
     description = "A public subnet"
     depends_on = [google_compute_network.vpc_network] 
 }
+
+
+# Private subnet settings
 
 resource "google_compute_subnetwork" "private_subnet" {
     name = "private-subnet"

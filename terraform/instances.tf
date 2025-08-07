@@ -1,3 +1,5 @@
+# App instance settings
+
 resource "google_compute_instance" "app_instance" {
   name = "app-instance"
   machine_type = "custom-4-6144"
@@ -19,5 +21,5 @@ resource "google_compute_disk" "app_instance_disk" {
     type = "pd-standard"
     image = "ubuntu-os-cloud/ubuntu-minimal-2404-lts-arm64"
     size = 30
-    description = "The disk attached to the app instance"
+    description = "The disk attached to the app_instance"
 }
