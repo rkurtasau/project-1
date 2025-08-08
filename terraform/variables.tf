@@ -15,3 +15,9 @@ variable "google_zone" {
   type    = string
   description = "Default GCP zone"
 }
+
+variable "google_project" {
+  default = "tribal-spanner-467709-v0"
+  type = string
+  description = "google project name"
+}
