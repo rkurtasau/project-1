@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "google" {
-    project = "tribal-spanner-467709-v0"
+    project = var.google_project
     region = var.google_region
     zone = var.google_zone
 }
