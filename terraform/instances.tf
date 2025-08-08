@@ -2,16 +2,22 @@
 
 resource "google_compute_instance" "app_instance" {
   name = "app-instance"
-  machine_type = "custom-4-6144"
+  machine_type = "c2d-standard-2"
   network_interface {
     network = google_compute_network.vpc_network.id
     subnetwork = google_compute_subnetwork.private_subnet.id
-    network_ip = "10.0.3.3"
+    network_ip = google_compute_address.internal_ip_app_instance.id
+    access_config {
+      nat_ip = google_compute_address.external_ip_app_instance.address
+      network_tier = "STANDARD"
+    }
   }
   boot_disk {
     source = google_compute_disk.app_instance_disk.id 
     }
-  depends_on = [ google_compute_subnetwork.private_subnet ]
+  depends_on = [ 
+    google_compute_subnetwork.private_subnet,
+    google_compute_disk.app_instance_disk ]
   allow_stopping_for_update = true
   description = "Main instance to deploying the app"
 }
