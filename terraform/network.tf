@@ -26,6 +26,25 @@ resource "google_compute_subnetwork" "private_subnet" {
     name = "private-subnet"
     network = google_compute_network.vpc_network.id
     ip_cidr_range = "10.0.3.0/26"
+    private_ip_google_access = true
     description = "A private subnet"
     depends_on = [google_compute_network.vpc_network]
+}
+
+
+# External address for the app-instance
+
+resource "google_compute_address" "external_ip_app_instance" {
+    name = "external-ip-app-instance"
+    address_type = "EXTERNAL"
+    network_tier = "STANDARD"
+}
+
+
+# Internal address for the app-instance
+resource "google_compute_address" "internal_ip_app_instance" {
+    name = "internal-ip-app-instance"
+    address_type = "INTERNAL"
+    address = "10.0.3.3"
+    subnetwork = google_compute_subnetwork.private_subnet.id
 }
