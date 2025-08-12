@@ -1,6 +1,6 @@
 variable "google_provider" {
-  default = "google"
-  type = string
+  default     = "google"
+  type        = string
   description = "google provider for terraform resources"
 }
 
@@ -11,13 +11,13 @@ variable "google_region" {
 }
 
 variable "google_zone" {
-  default = "us-central1-c"
-  type    = string
+  default     = "us-central1-c"
+  type        = string
   description = "Default GCP zone"
 }
 
 variable "google_project" {
-  default = "tribal-spanner-467709-v0"
-  type = string
+  default     = "tribal-spanner-467709-v0"
+  type        = string
   description = "google project name"
 }
