@@ -1,12 +1,12 @@
 resource "google_compute_instance" "app_instance" {
   name         = "app-instance"
-  machine_type = "c2d-standard-2"
+  machine_type = "e2-standard-2"
   network_interface {
-    network    = google_compute_network.vpc_network.id
-    subnetwork = google_compute_subnetwork.subnet_1.id
-    network_ip = google_compute_address.internal_ip_app_instance.address
+    network    = google_compute_network.main.id
+    subnetwork = google_compute_subnetwork.private.id
+    network_ip = google_compute_address.internal_app1.address
     access_config {
-      nat_ip       = google_compute_address.external_ip_app_instance1.address
+      nat_ip       = google_compute_address.external_app1.address
       network_tier = "STANDARD"
     }
   }
@@ -19,8 +19,8 @@ resource "google_compute_instance" "app_instance" {
     auto_delete = false
   }
   depends_on = [
-    google_compute_subnetwork.subnet_1,
-    google_compute_address.external_ip_app_instance1,
+    google_compute_subnetwork.private,
+    google_compute_address.external_app1,
   google_compute_firewall.ssh_access]
   allow_stopping_for_update = true
   metadata = {
