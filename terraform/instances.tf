@@ -23,7 +23,7 @@ resource "google_compute_instance" "app_docker_host_1" {
     ]
   allow_stopping_for_update = true
   metadata = {
-    ssh-keys = "${var.user-ssh-app-instance}:${var.ssh-key-app-instance}"
+    ssh-keys = "${var.user-ssh-adh}:${var.ssh-key-adh}"
     }
   description = "Main docker-host application deploying"
   tags        = ["app-docker-host-1"]
@@ -52,7 +52,7 @@ resource "google_compute_instance" "app_docker_host_2" {
     ]
   allow_stopping_for_update = true
   metadata = {
-    ssh-keys = "${var.user-ssh-app-instance}:${var.ssh-key-app-instance}"
+    ssh-keys = "${var.user-ssh-adh}:${var.ssh-key-adh}"
     }
   description = "Reserve docker-host application deploying"
   tags        = ["app-docker-host-2"]
