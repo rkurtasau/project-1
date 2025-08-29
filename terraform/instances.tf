@@ -72,7 +72,7 @@ resource "google_compute_instance" "management_host" {
   }
   boot_disk {
     initialize_params {
-      size  = 10
+      size  = 15
       type  = "pd-standard"
       image = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
     }
