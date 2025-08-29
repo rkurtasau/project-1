@@ -11,7 +11,19 @@ resource "google_compute_firewall" "ssh_access" {
     ports    = [22]
   }
   depends_on  = [google_compute_network.main]
-  target_tags = ["app-instance"]
+  target_tags = [  ]
+}
+
+
+resource "google_compute_firewall" "inbound_access" {
+  name      = "inbound-access"
+  network   = google_compute_network.main.id
+  direction = "INGRESS"
+  allow {
+    protocol = "TCP"
+    ports    = [80, 443]
+  }
+  target_tags = [  ]
 }
 
 
@@ -23,5 +35,5 @@ resource "google_compute_firewall" "outbound_access" {
     protocol = "TCP"
     ports    = [80, 443]
   }
-  target_tags = ["app-instance"]
+  target_tags = [  ]
 }
