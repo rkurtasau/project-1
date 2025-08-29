@@ -70,3 +70,20 @@ resource "google_compute_address" "internal_adh2" {
   subnetwork   = google_compute_subnetwork.private.id
   description  = "App docker-host-2 internal address"
 }
+
+
+resource "google_compute_address" "external_management" {
+  name = "external-management"
+  address_type = "EXTERNAL"
+  subnetwork = google_compute_subnetwork.private.id
+  description = "Management host external address"
+}
+
+
+resource "google_compute_address" "internal_management" {
+  name = "internal-management"
+  address_type = "INTERNAL"
+  address = "10.0.1.30"
+  subnetwork = google_compute_subnetwork.private.id
+  description = "Management host internal address"
+}
