@@ -23,7 +23,7 @@ resource "google_compute_address" "external_lb_l7" {
   lifecycle {
     create_before_destroy = true
   }
-  depends_on   = [google_compute_network.main]
+  depends_on = [google_compute_network.main]
 }
 
 
@@ -73,16 +73,16 @@ resource "google_compute_address" "internal_adh2" {
 
 
 resource "google_compute_address" "external_management" {
-  name = "external-management"
+  name         = "external-management"
   address_type = "EXTERNAL"
-  description = "Management host external address"
+  description  = "Management host external address"
 }
 
 
 resource "google_compute_address" "internal_management" {
-  name = "internal-management"
+  name         = "internal-management"
   address_type = "INTERNAL"
-  address = "10.0.1.30"
-  subnetwork = google_compute_subnetwork.private.id
-  description = "Management host internal address"
+  address      = "10.0.1.30"
+  subnetwork   = google_compute_subnetwork.private.id
+  description  = "Management host internal address"
 }
