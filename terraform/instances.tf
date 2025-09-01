@@ -80,7 +80,7 @@ resource "google_compute_instance" "management_host" {
   }
   allow_stopping_for_update = true
   metadata = {
-    ssh-keys = "${var.user-ssh-management}:${var.ssh-key-management}"
+    ssh-keys = "${var.user-ssh-adh}:${var.ssh-key-adh}"
   }
   depends_on = [ 
     google_compute_subnetwork.private,
@@ -88,5 +88,5 @@ resource "google_compute_instance" "management_host" {
     google_compute_address.external_management
   ]
   description = "Management host"
-  tags = [  ]
+  tags = [ "management-host" ]
 }
