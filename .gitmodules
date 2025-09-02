@@ -1,0 +1,3 @@
+[submodule "management-host"]
+	path = management-host
+	url = https://github.com/rkurtasau/management-host
