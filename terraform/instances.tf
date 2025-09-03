@@ -1,5 +1,5 @@
-resource "google_compute_instance" "app_docker_host_1" {
-  name         = "app-docker-host-1"
+resource "google_compute_instance" "app_docker_host" {
+  name         = "app-docker-host"
   machine_type = "e2-standard-2"
 
   network_interface {
@@ -26,7 +26,7 @@ resource "google_compute_instance" "app_docker_host_1" {
     ssh-keys = "${var.user-ssh-adh}:${var.ssh-key-adh}"
     }
   description = "Main docker-host application deploying"
-  tags        = ["app-docker-host-1"]
+  tags        = ["app-docker-host"]
 }
 
 
@@ -58,12 +58,12 @@ resource "google_compute_instance" "management_host" {
     google_compute_address.internal_management,
     google_compute_address.external_management
   ]
-  description = "Management host"
+  description = "Management host. Also using for monitoring systems hosting"
   tags = [ "management-host" ]
 }
 
 
-resource "google_compute_instance" "lb1" {
+resource "google_compute_instance" "load_balancer" {
   name         = "load-balancer-1"
   machine_type = "e2-standard-2"
   network_interface {
@@ -87,6 +87,6 @@ resource "google_compute_instance" "lb1" {
     google_compute_subnetwork.private,
     google_compute_address.internal_lb1
   ]
-  description = "Load Balancer 1 host"
-  tags = [ "lb1" ]
+  description = "Load Balancer host"
+  tags = [ "load-balancer" ]
 }
