@@ -16,8 +16,8 @@ resource "google_compute_subnetwork" "private" {
 }
 
 
-resource "google_compute_address" "internal_lb1" {
-  name         = "internal-lb-1"
+resource "google_compute_address" "internal_lb" {
+  name         = "internal-lb"
   address_type = "INTERNAL"
   address      = "10.0.1.11"
   subnetwork   = google_compute_subnetwork.private.id
@@ -25,8 +25,8 @@ resource "google_compute_address" "internal_lb1" {
 }
 
 
-resource "google_compute_address" "internal_adh1" {
-  name         = "internal-adh-1"
+resource "google_compute_address" "internal_adh" {
+  name         = "internal-adh"
   address_type = "INTERNAL"
   address      = "10.0.1.21"
   subnetwork   = google_compute_subnetwork.private.id

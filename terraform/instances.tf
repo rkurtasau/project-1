@@ -5,7 +5,7 @@ resource "google_compute_instance" "app_docker_host" {
   network_interface {
     network    = google_compute_network.main.id
     subnetwork = google_compute_subnetwork.private.id
-    network_ip = google_compute_address.internal_adh1.address
+    network_ip = google_compute_address.internal_adh.address
     }
 
   boot_disk {
@@ -19,7 +19,7 @@ resource "google_compute_instance" "app_docker_host" {
 
   depends_on = [
     google_compute_subnetwork.private,
-    google_compute_address.internal_adh1
+    google_compute_address.internal_adh
     ]
   allow_stopping_for_update = true
   metadata = {
@@ -43,7 +43,7 @@ resource "google_compute_instance" "management_host" {
   }
   boot_disk {
     initialize_params {
-      size  = 20
+      size  = 15
       type  = "pd-standard"
       image = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
     }
@@ -69,7 +69,7 @@ resource "google_compute_instance" "load_balancer" {
   network_interface {
     network    = google_compute_network.main.id
     subnetwork = google_compute_subnetwork.private.id
-    network_ip = google_compute_address.internal_lb1.address
+    network_ip = google_compute_address.internal_lb.address
   }
   boot_disk {
     initialize_params {
@@ -85,7 +85,7 @@ resource "google_compute_instance" "load_balancer" {
   }
   depends_on = [ 
     google_compute_subnetwork.private,
-    google_compute_address.internal_lb1
+    google_compute_address.internal_lb
   ]
   description = "Load Balancer host"
   tags = [ "load-balancer" ]
