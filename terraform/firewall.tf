@@ -11,7 +11,7 @@ resource "google_compute_firewall" "ssh_access" {
     ports    = [22]
   }
   depends_on  = [google_compute_network.main]
-  target_tags = ["management-host"]
+  target_tags = ["management-host", "app-docker-host", "load-balancer"]
 }
 
 
