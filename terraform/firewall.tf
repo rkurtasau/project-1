@@ -1,3 +1,20 @@
+resource "google_compute_firewall" "ssh_access_management" {
+  name          = "ssh-access-management"
+  network       = google_compute_network.main.id
+  direction     = "INGRESS"
+  source_ranges = ["10.0.1.0/24"]
+  lifecycle {
+    create_before_destroy = true
+  }
+  allow {
+    protocol = "TCP"
+    ports    = [22]
+  }
+  depends_on  = [google_compute_network.main]
+  target_tags = ["app-docker-host", "load-balancer"]
+}
+
+
 resource "google_compute_firewall" "ssh_access" {
   name          = "ssh-access"
   network       = google_compute_network.main.id
@@ -11,7 +28,7 @@ resource "google_compute_firewall" "ssh_access" {
     ports    = [22]
   }
   depends_on  = [google_compute_network.main]
-  target_tags = ["management-host", "app-docker-host", "load-balancer"]
+  target_tags = ["management-host"]
 }
 
 
